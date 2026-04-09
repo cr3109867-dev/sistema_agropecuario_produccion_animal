@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Sistema Agropecuario</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <h1>
+            🐄 Sistema Agropecuario de Producción 
+            <button onclick="abrirGlosario()" class="btn-glosario">📖 Glosario</button>
+        </h1>
+
+        <p>Control de ventas y producción animal</p>
+
+    </header>
+
+
+    <div class="stats">
+
+        <div class="card">
+            <h3>🐄 Total Animales</h3>
+            <p id="totalAnimales">0</p>
+        </div>
+
+        <div class="card">
+            <h3>💰 Ganancia Total</h3>
+            <p>$ <span id="gananciaTotal">0</span></p>
+        </div>
+
+        <div class="card">
+            <h3>📈 Operaciones</h3>
+            <p id="totalOperaciones">0</p>
+        </div>
+
+        <div class="card">
+            <h3>⭐ Ganancia Promedio</h3>
+            <p>$ <span id="gananciaPromedio">0</span></p>
+        </div>
+
+        <div class="card">
+            <h3>📊 ROI Total</h3>
+            <p><span id="roiTotal">0</span>%</p>
+        </div>
+
+        <div class="card">
+            <h3>🥚 Huevos</h3>
+            <p id="huevosTotal">0</p>
+        </div>
+
+        <div class="card">
+            <h3>🥩 Carne</h3>
+            <p id="carneTotal">0</p>
+        </div>
+
+        <div class="card">
+            <h3>🥛 Leche (Litros)</h3>
+            <p id="lecheTotal">0</p>
+        </div>
+
+        <div class="card">
+            <h3>📥 Ingresos Totales</h3>
+            <p>$ <span id="ingresosTotales">0</span></p>
+        </div>
+
+        <div class="card">
+            <h3>📤 Gasto Total</h3>
+            <p>$ <span id="gastoTotal">0</span></p>
+        </div>
+
+        <div class="card">
+            <h3>🏅 Mejor Animal</h3>
+            <p id="mejorAnimal">N/A</p>
+        </div>
+
+        <div class="card">
+            <h3>🥉 Peor Animal</h3>
+            <p id="peorAnimal">N/A</p>
+        </div>
+
+    </div>
+
+
+    <div class="container">
+
+        <h2>Registro de Producción</h2>
+
+        <label>Tipo de animal</label>
+
+        <select id="animal">
+            <option value="gallina">Gallina</option>
+            <option value="vaca">Vaca</option>
+            <option value="cerdo">Cerdo</option>
+            <option value="domestico">Animal doméstico</option>
+        </select>
+
+        <label>Cantidad</label>
+        <input type="number" id="cantidad">
+
+        <label>Precio de venta</label>
+        <input type="number" id="precio">
+
+        <label>Gasto mensual</label>
+        <input type="number" id="gasto">
+
+        <br>
+
+        <button onclick="calcular()">Calcular</button>
+        <button onclick="limpiarCampos()">Limpiar</button>
+        <button onclick="exportarCSV()">Exportar CSV</button>
+        <button onclick="reiniciarTodos()">Reiniciar todos</button>
+
+        <h3 id="resultado"></h3>
+
+    </div>
+
+
+    <h2>📋 Historial de Producción</h2>
+
+    <input type="text" id="buscar" onkeyup="buscarAnimal()" placeholder="Buscar animal...">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Animal</th>
+                <th>Cantidad</th>
+                <th>Huevos</th>
+                <th>Carne</th>
+                <th>Leche</th>
+                <th>Ingreso</th>
+                <th>Gasto</th>
+                <th>Ganancia</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody id="tablaVentas"></tbody>
+    </table>
+
+
+    <h2>📊 Producción Total</h2>
+
+    <div class="charts-grid">
+        <div class="chart-card">
+            <h4>Volumen total (Huevos, Carne, Leche)</h4>
+            <canvas id="graficaProduccion"></canvas>
+        </div>
+        <div class="chart-card">
+            <h4>Participación por tipo de animal</h4>
+            <canvas id="graficaPorAnimal"></canvas>
+        </div>
+    </div>
+
+
+    <!-- 🔥 GLOSARIO PRO -->
+    <div id="modalGlosario" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarGlosario()">&times;</span>
+            <h2>📖 Glosario Ganadero</h2>
+
+            <ul id="listaGlosario">
+<li onclick="mostrarDef('ROI')"><b>ROI</b></li>
+<li onclick="mostrarDef('Ganancia')"><b>Ganancia</b></li>
+<li onclick="mostrarDef('Engorde')"><b>Engorde</b></li>
+<li onclick="mostrarDef('Pastoreo')"><b>Pastoreo</b></li>
+<li onclick="mostrarDef('Inventario')"><b>Inventario</b></li>
+<li onclick="mostrarDef('Conversión alimenticia')"><b>Conversión alimenticia</b></li>
+<li onclick="mostrarDef('Rentabilidad')"><b>Rentabilidad</b></li>
+<li onclick="mostrarDef('Producción lechera')"><b>Producción lechera</b></li>
+<li onclick="mostrarDef('Hato')"><b>Hato</b></li>
+<li onclick="mostrarDef('Forraje')"><b>Forraje</b></li>
+
+<li onclick="mostrarDef('Cría')"><b>Cría</b></li>
+<li onclick="mostrarDef('Recría')"><b>Recría</b></li>
+<li onclick="mostrarDef('Ceba')"><b>Ceba</b></li>
+<li onclick="mostrarDef('Destete')"><b>Destete</b></li>
+<li onclick="mostrarDef('Parición')"><b>Parición</b></li>
+<li onclick="mostrarDef('Vacunación')"><b>Vacunación</b></li>
+<li onclick="mostrarDef('Sanidad')"><b>Sanidad</b></li>
+<li onclick="mostrarDef('Corrales')"><b>Corrales</b></li>
+<li onclick="mostrarDef('Establo')"><b>Establo</b></li>
+<li onclick="mostrarDef('Ordeño')"><b>Ordeño</b></li>
+
+<li onclick="mostrarDef('Alimento balanceado')"><b>Alimento balanceado</b></li>
+<li onclick="mostrarDef('Suplemento')"><b>Suplemento</b></li>
+<li onclick="mostrarDef('Peso vivo')"><b>Peso vivo</b></li>
+<li onclick="mostrarDef('Canal')"><b>Canal</b></li>
+<li onclick="mostrarDef('Rendimiento')"><b>Rendimiento</b></li>
+<li onclick="mostrarDef('Productividad')"><b>Productividad</b></li>
+<li onclick="mostrarDef('Ganadería')"><b>Ganadería</b></li>
+<li onclick="mostrarDef('Agricultura')"><b>Agricultura</b></li>
+<li onclick="mostrarDef('Sistema extensivo')"><b>Sistema extensivo</b></li>
+<li onclick="mostrarDef('Sistema intensivo')"><b>Sistema intensivo</b></li>
+
+<li onclick="mostrarDef('Rotación de potreros')"><b>Rotación de potreros</b></li>
+<li onclick="mostrarDef('Potrero')"><b>Potrero</b></li>
+<li onclick="mostrarDef('Semoviente')"><b>Semoviente</b></li>
+<li onclick="mostrarDef('Bovino')"><b>Bovino</b></li>
+<li onclick="mostrarDef('Porcino')"><b>Porcino</b></li>
+<li onclick="mostrarDef('Avícola')"><b>Avícola</b></li>
+<li onclick="mostrarDef('Caprino')"><b>Caprino</b></li>
+<li onclick="mostrarDef('Ovino')"><b>Ovino</b></li>
+<li onclick="mostrarDef('Bioseguridad')"><b>Bioseguridad</b></li>
+<li onclick="mostrarDef('Finca')"><b>Finca</b></li>
+
+<li onclick="mostrarDef('Agropecuario')"><b>Agropecuario</b></li>
+<li onclick="mostrarDef('Sostenibilidad')"><b>Sostenibilidad</b></li>
+<li onclick="mostrarDef('Insumos')"><b>Insumos</b></li>
+<li onclick="mostrarDef('Costos')"><b>Costos</b></li>
+<li onclick="mostrarDef('Ingresos')"><b>Ingresos</b></li>
+<li onclick="mostrarDef('Utilidad')"><b>Utilidad</b></li>
+<li onclick="mostrarDef('Mercado')"><b>Mercado</b></li>
+<li onclick="mostrarDef('Comercialización')"><b>Comercialización</b></li>
+<li onclick="mostrarDef('Trazabilidad')"><b>Trazabilidad</b></li>
+<li onclick="mostrarDef('Producción animal')"><b>Producción animal</b></li>
+</ul>
+
+            <div id="infoGlosario" class="info-glosario">
+                <p>Haz clic en un término para ver la explicación 👆</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+    <script>
+        function abrirGlosario() {
+            document.getElementById("modalGlosario").style.display = "block";
+        }
+
+        function cerrarGlosario() {
+            document.getElementById("modalGlosario").style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>

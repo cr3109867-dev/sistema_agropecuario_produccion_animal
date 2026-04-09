@@ -1,0 +1,334 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+    background-image: url("https://images.unsplash.com/photo-1500595046743-cd271d694d30");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: -1;
+}
+
+.header {
+    text-align: center;
+    color: white;
+    margin-top: 30px;
+}
+
+.header h1 {
+    font-size: 40px;
+}
+
+.header p {
+    font-size: 18px;
+}
+
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    width: 200px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+    color: #2e7d32;
+}
+
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.container {
+    background: white;
+    width: 420px;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.container h2 {
+    text-align: center;
+    color: #2e7d32;
+}
+
+input,
+select {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #2e7d32;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    margin: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1b5e20;
+    transform: scale(1.05);
+}
+
+table {
+    width: 85%;
+    margin-top: 30px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+th {
+    background: #2e7d32;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background: #f3f3f3;
+}
+
+#buscar {
+    margin-top: 20px;
+    padding: 10px;
+    width: 250px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+#resultado {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1b5e20;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    width: 90%;
+    margin: 0 auto 40px;
+}
+
+.chart-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.chart-card h4 {
+    margin: 0 0 10px;
+    color: #1b5e20;
+    text-align: center;
+}
+
+canvas {
+    margin-top: 0;
+    width: 100% !important;
+    max-height: 320px;
+}
+
+
+/* 🔥 BOTÓN GLOSARIO MEJORADO */
+.header h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-glosario {
+    background: linear-gradient(135deg, #43a047, #2e7d32);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-glosario:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #66bb6a, #1b5e20);
+}
+
+
+/* 🔥 MODAL (GLOSARIO PRO) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 25px;
+    width: 90%;
+    max-width: 650px;
+
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+    animation: slideUp 0.3s ease;
+
+    /* 🔥 CLAVE PARA QUE FUNCIONE BIEN */
+    max-height: 85vh;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content h2 {
+    text-align: center;
+    color: #2e7d32;
+}
+
+/* Lista más bonita */
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-content li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-content li b {
+    color: #2e7d32;
+}
+
+/* Botón cerrar */
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #555;
+}
+
+.close:hover {
+    color: red;
+}
+
+
+/* 🔥 ANIMACIONES */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* 🔥 EFECTO HOVER MÁS PRO EN TARJETAS */
+.card {
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.03);
+}
+
+
+/* 🔥 BOTONES MÁS SUAVES */
+button {
+    transition: all 0.3s ease;
+}
+
+
+
+
+#listaGlosario {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+#listaGlosario li {
+    cursor: pointer;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    transition: 0.2s;
+}
+
+#listaGlosario li:hover {
+    background: #e8f5e9;
+}
+
+.info-glosario {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #f1f8e9;
+    border-left: 4px solid #2e7d32;
+    min-height: 80px; /* 🔥 esto faltaba */
+}
